@@ -33,4 +33,51 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <application>
+        <el-resolver>enterprise.jsf_jpa_war.util.JsfCrudELResolver</el-resolver>
+    </application>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>welcome</from-outcome>
+            <to-view-id>/welcomeJSF.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>files</managed-bean-name>
+        <managed-bean-class>enterprise.jsf_jpa_war.FilesController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>filesJpa</managed-bean-name>
+        <managed-bean-class>enterprise.jsf_jpa_war.FilesFacade</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>enterprise.jsf_jpa_war.Files</converter-for-class>
+        <converter-class>enterprise.jsf_jpa_war.FilesConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>files_create</from-outcome>
+            <to-view-id>/files/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>files_list</from-outcome>
+            <to-view-id>/files/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>files_edit</from-outcome>
+            <to-view-id>/files/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>files_detail</from-outcome>
+            <to-view-id>/files/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
