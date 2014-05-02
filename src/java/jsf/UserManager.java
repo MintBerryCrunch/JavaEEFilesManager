@@ -1,7 +1,9 @@
 
 
-package enterprise.jsf_jpa_war;
+package jsf;
 
+import session.UserFacade;
+import entities.User;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,11 +31,11 @@ import javax.transaction.UserTransaction;
  */
 public class UserManager {
     @EJB
-    private WuserFacade wuserFacade;
+    private UserFacade userFacade;
     
     /**
      * <p>The key for the session scoped attribute holding the
-     * appropriate <code>Wuser</code> instance.</p>
+     * appropriate <code>User</code> instance.</p>
      */
     public static final String USER_SESSION_KEY = "user";
     
@@ -129,7 +131,7 @@ public class UserManager {
      */
     public String validateUser() {   
         FacesContext context = FacesContext.getCurrentInstance();
-        Wuser user = getUser();
+        User user = getUser();
         if (user != null) {
             if (!user.getPassword().equals(password)) {
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -154,9 +156,9 @@ public class UserManager {
     }
     
     /**
-     * <p>Creates a new <code>Wuser</code>.  If the specified user name exists
-     * or an error occurs when persisting the Wuser instance, enqueue a message
-     * detailing the problem to the <code>FacesContext</code>.  If the 
+     * <p>Creates a new <code>User</code>.  If the specified user name exists
+ or an error occurs when persisting the User instance, enqueue a message
+ detailing the problem to the <code>FacesContext</code>.  If the 
      * user is created, move the user back to the login view.</p>
      *
      * @return <code>login</code> if the user is created, otherwise
@@ -164,14 +166,14 @@ public class UserManager {
      */
     public String createUser() {
         FacesContext context = FacesContext.getCurrentInstance();
-        Wuser wuser = getUser();
+        User wuser = getUser();
         if (wuser == null) {
             if (!password.equals(passwordv)) {
                 FacesMessage message = new FacesMessage("The specified passwords do not match.  Please try again");
                 context.addMessage(null, message);
                 return null;
             }
-            wuser = new Wuser();
+            wuser = new User();
             wuser.setFirstname(fname);
             wuser.setLastname(lname);
             wuser.setPassword(password);
@@ -232,16 +234,16 @@ public class UserManager {
     
     
     /**
-     * <p>This will attempt to lookup a <code>Wuser</code> object
+     * <p>This will attempt to lookup a <code>User</code> object
      * based on the provided user name.</p>
      *
-     * @return a <code>Wuser</code> object associated with the current
-     *  username, otherwise, if no <code>Wuser</code> can be found,
+     * @return a <code>User</code> object associated with the current
+     *  username, otherwise, if no <code>User</code> can be found,
      *  returns <code>null</code>
      */
-    private Wuser getUser() {
+    private User getUser() {
         try {
-            Wuser user = (Wuser)
+            User user = (User)
             em.createNamedQuery("Wuser.findByUsername").
                     setParameter("username", username).getSingleResult();
             return user; 
@@ -249,9 +251,9 @@ public class UserManager {
             return null;
         }
     }
-    public List<Wuser> usersList(){
-       List <Wuser> retur;
-       retur = wuserFacade.findAll();
+    public List<User> usersList(){
+       List <User> retur;
+       retur = userFacade.findAll();
        return retur;
     }
     

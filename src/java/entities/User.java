@@ -1,5 +1,5 @@
 
-package enterprise.jsf_jpa_war;
+package entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,11 +16,17 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Entity
-@Table(name = "WUSER")
-
+@Table(name = "USER")
         
-@NamedQueries( {@NamedQuery(name = "Wuser.findById", query = "SELECT w FROM Wuser w WHERE w.id = :id"), @NamedQuery(name = "Wuser.findByFirstname", query = "SELECT w FROM Wuser w WHERE w.firstname = :firstname"), @NamedQuery(name = "Wuser.findByLastname", query = "SELECT w FROM Wuser w WHERE w.lastname = :lastname"), @NamedQuery(name = "Wuser.findByUsername", query = "SELECT w FROM Wuser w WHERE w.username = :username"), @NamedQuery(name = "Wuser.findByPassword", query = "SELECT w FROM Wuser w WHERE w.password = :password"), @NamedQuery(name = "Wuser.findBySince", query = "SELECT w FROM Wuser w WHERE w.since = :since"),@NamedQuery(name = "Wuser.findByAdminfield", query = "SELECT w FROM Wuser w WHERE w.adminfield = :adminfield")})
-public class Wuser implements Serializable {
+@NamedQueries( {
+    @NamedQuery(name = "User.findById", query = "SELECT w FROM User w WHERE w.id = :id"), 
+    @NamedQuery(name = "User.findByFirstname", query = "SELECT w FROM User w WHERE w.firstname = :firstname"),
+    @NamedQuery(name = "User.findByLastname", query = "SELECT w FROM User w WHERE w.lastname = :lastname"),
+    @NamedQuery(name = "User.findByUsername", query = "SELECT w FROM User w WHERE w.username = :username"),
+    @NamedQuery(name = "User.findByPassword", query = "SELECT w FROM User w WHERE w.password = :password"),
+    @NamedQuery(name = "User.findBySince", query = "SELECT w FROM User w WHERE w.since = :since"),
+    @NamedQuery(name = "User.findByAdminfield", query = "SELECT w FROM User w WHERE w.adminfield = :adminfield")})
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy=IDENTITY)
@@ -38,7 +44,8 @@ public class Wuser implements Serializable {
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
-     @Column(name = "Role", nullable = false)
+    
+    @Column(name = "ROLE", nullable = false)
     private String role;
 
     
@@ -50,25 +57,21 @@ public class Wuser implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date since;
     
-    /** Creates a new instance of Wuser
-     * @return  */
-    /**
-     * Creates a new instance of Wuser
-     */
-    public Wuser() {
+    public User() {
     }
-public String getRole() {
+    
+    public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
     }
-    public Wuser(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Wuser(Integer id, String firstname, String lastname, String username, String password,boolean adminfield) {
+    public User(Integer id, String firstname, String lastname, String username, String password,boolean adminfield) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -147,7 +150,7 @@ public String getRole() {
         if (object == null || !this.getClass().equals(object.getClass())) {
             return false;
         }
-        Wuser other = (Wuser)object;
+        User other = (User)object;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) return false;
         return true;
     }

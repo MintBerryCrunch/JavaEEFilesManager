@@ -3,7 +3,7 @@
   <persistence-unit name="jsf-jpa-war" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/sample</jta-data-source>
-    <class>enterprise.jsf_jpa_war.Wuser</class>
+    <class>entities.User</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <!-- use this property if target server is GlassFish V3 with EclipseLink -->

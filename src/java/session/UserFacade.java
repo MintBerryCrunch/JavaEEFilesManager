@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package enterprise.jsf_jpa_war;
+package session;
 
+import session.AbstractFacade;
+import entities.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author mintberry
  */
 @Stateless
-public class WuserFacade extends AbstractFacade<Wuser> {
+public class UserFacade extends AbstractFacade<User> {
     @PersistenceContext(unitName = "jsf-jpa-war")
     private EntityManager em;
 
@@ -24,8 +26,8 @@ public class WuserFacade extends AbstractFacade<Wuser> {
         return em;
     }
 
-    public WuserFacade() {
-        super(Wuser.class);
+    public UserFacade() {
+        super(User.class);
     }
     
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package enterprise.jsf_jpa_war;
+package session;
 
 import java.util.List;
 import javax.persistence.EntityManager;

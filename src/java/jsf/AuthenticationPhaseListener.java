@@ -1,6 +1,6 @@
 
 
-package enterprise.jsf_jpa_war;
+package jsf;
 
 import javax.el.ELContext;
 import javax.el.ValueExpression;
