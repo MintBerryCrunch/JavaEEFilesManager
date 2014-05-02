@@ -52,5 +52,29 @@
                 <h:commandButton id="logout" value="Logout" action="#{usermanager.logout}"/>
             </h:form>
         </f:view>
+            
+        <h1>Files List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>File name</th>
+                    <th>Added date</th>
+                    <th>Modified date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+        <tbody>
+         
+     
+        <c:forEach  items="${FilesManager.filesList()}" var="user">
+                <tr>     
+                    <td>${files.filename}</td> 
+                    <td>${files.addeddate}</td>
+                    <td>${files.modifieddate}</td>
+                    <td>${files.description}</td> 
+                </tr>
+            </c:forEach>
+         </tbody>
+     </table>       
     </body>
 </html>

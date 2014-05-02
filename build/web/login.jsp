@@ -36,6 +36,7 @@
             <h:commandLink id="create"
                            value="Create New Account"
                            action="create"/>
+            <br>
             <h:commandLink id="userslist"
                            value="Users"
                            action="userslist"/>
